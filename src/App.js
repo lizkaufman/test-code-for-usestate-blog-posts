@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
 import './App.css';
 
 function App() {
+  const [stitchCounter, setStitchCounter] = useState(0);
+  const [stitchInput, setStitchInput] = useState(1);
+
+  function handleClick() {
+    setStitchCounter(parseInt(stitchCounter) + parseInt(stitchInput));
+  }
+
+  function handleChange(event) {
+    const value = event.target.value;
+    setStitchInput(value);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="stitchCounter">
+      <p id="StitchCountDisplay">{stitchCounter}</p>
+      <input value={stitchInput} onChange={handleChange} />
+      <button id="stitchCountButton" onClick={handleClick}>
+        Count stitches!
+      </button>
     </div>
   );
 }
